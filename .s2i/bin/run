@@ -1,0 +1,1 @@
+/opt/app-root/src/bundle/ruby/2.4.0/bin/fluentd -c /opt/app-root/src/fluentd.conf
