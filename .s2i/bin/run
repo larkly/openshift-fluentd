@@ -10,7 +10,7 @@ if [ -z $SPLUNK_SERVER]
 then
  echo "No SPLUNK_SERVER env variable set, using the default one in fluentd.conf."
 else
- echo "SPLUNK_SERVER env variable set, replacing the default token in fluentd.con."
+ echo "SPLUNK_SERVER env variable set, replacing the default token in fluentd.conf."
  sed -i "s/splunk.splunk.svc.cluster.local/$SPLUNK_SERVER/g" /opt/app-root/src/fluentd.conf
 fi
 
