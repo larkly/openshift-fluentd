@@ -14,4 +14,14 @@ else
  sed -i "s/splunk.splunk.svc.cluster.local/$SPLUNK_SERVER/g" /opt/app-root/src/fluentd.conf
 fi
 
+if [ -z $SPLUNK_PORT]
+then
+ echo "No SPLUNK_PORT env variable set, using the default one in fluentd.conf."
+else
+ echo "SPLUNK_PORT env variable set, replacing the default one in fluentd.conf."
+ sed -i "s/8088/$SPLUNK_PORT/g" /opt/app-root/src/fluentd.conf
+fi
+
+
+
 /opt/app-root/src/bundle/ruby/2.4.0/bin/fluentd -c /opt/app-root/src/fluentd.conf
