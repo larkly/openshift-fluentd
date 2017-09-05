@@ -31,4 +31,14 @@ else
  sed -i "s/http/$SPLUNK_PROTOCOL/g" /opt/app-root/src/fluentd.conf
 fi
 
+if [ -z $SPLUNK_DEBUG
+then
+ echo "No SPLUNK_DEBUG env variable set, using the default one in flued.conf."
+ echo "Valid options are fatal,error,warn,info,debug,trace."
+ sed -i "s/DEBUG/info/g" /opt/app-root/src/fluentd.conf
+else
+ echo "SPLUNK_DEBUG env variable set, replacing the default one in fluentd.conf."
+ sed -i "s/DEBUG/$SPLUNK_DEBUG/g" /opt/app-root/src/fluentd.conf
+fi
+
 /opt/app-root/src/bundle/ruby/2.4.0/bin/fluentd -c /opt/app-root/src/fluentd.conf
