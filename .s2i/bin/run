@@ -31,7 +31,7 @@ else
  sed -i "s/http/$SPLUNK_PROTOCOL/g" /opt/app-root/src/fluentd.conf
 fi
 
-if [ -z $SPLUNK_DEBUG
+if [ -z $SPLUNK_DEBUG ]
 then
  echo "No SPLUNK_DEBUG env variable set, using the default one in flued.conf."
  echo "Valid options are fatal,error,warn,info,debug,trace."
