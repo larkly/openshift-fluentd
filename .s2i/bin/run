@@ -33,15 +33,6 @@ fi
 
 if [ -z $SPLUNK_INDEX ]
 then
-<<<<<<< HEAD
- echo "No SPLUNK_INDEX env variable set, using the default one in fluentd.conf."
-else
- echo "SPLUNK_INDEX env variable set, replacing the default one in fluentd.conf."
- sed -i "s/index main/index $SPLUNK_INDEX/g" /opt/app-root/src/fluentd.conf
-fi
-
-if [ -z $SPLUNK_INDEX ]
-then
  echo "No SPLUNK_INDEX env variable set, using the default one in fluentd.conf."
 else
  echo "SPLUNK_INDEX env variable set, replacing the default one in fluentd.conf."
