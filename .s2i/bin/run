@@ -3,7 +3,7 @@ then
   echo "No SPLUNK_TOKEN env variable set, using the default one in fluentd.conf."
 else
   echo "SPLUNK_TOKEN env variable set, replacing the default token in fluentd.conf."
-  sed -i "s/7084BC1F-DF53-42A7-AE43-2F6DDDD10E72/$SPLUNK_TOKEN/g" /opt/app-root/src/fluentd.conf
+  sed -i "s/7084BC1F-DF53-42A7-AE43-2F6DDDD10E72/$SPLUNK_TOKEN/g" /opt/app-root/src/config/fluentd.conf
 fi
 
 if [ -z $SPLUNK_SERVER ]
@@ -11,7 +11,7 @@ then
  echo "No SPLUNK_SERVER env variable set, using the default one in fluentd.conf."
 else
  echo "SPLUNK_SERVER env variable set, replacing the default token in fluentd.conf."
- sed -i "s/splunk.splunk.svc.cluster.local/$SPLUNK_SERVER/g" /opt/app-root/src/fluentd.conf
+ sed -i "s/splunk.splunk.svc.cluster.local/$SPLUNK_SERVER/g" /opt/app-root/src/config/fluentd.conf
 fi
 
 if [ -z $SPLUNK_PORT ]
@@ -19,7 +19,7 @@ then
  echo "No SPLUNK_PORT env variable set, using the default one in fluentd.conf."
 else
  echo "SPLUNK_PORT env variable set, replacing the default one in fluentd.conf."
- sed -i "s/8088/$SPLUNK_PORT/g" /opt/app-root/src/fluentd.conf
+ sed -i "s/8088/$SPLUNK_PORT/g" /opt/app-root/src/config/fluentd.conf
 fi
 
 
@@ -28,15 +28,7 @@ then
  echo "No SPLUNK_PROTOCOL env variable set, using the default one in fluentd.conf."
 else
  echo "SPLUNK_PROTOCOL env variable set, replacing the default one in fluentd.conf."
- sed -i "s/http/$SPLUNK_PROTOCOL/g" /opt/app-root/src/fluentd.conf
+ sed -i "s/http/$SPLUNK_PROTOCOL/g" /opt/app-root/src/config/fluentd.conf
 fi
 
-if [ -z $SPLUNK_INDEX ]
-then
- echo "No SPLUNK_INDEX env variable set, using the default one in fluentd.conf."
-else
- echo "SPLUNK_INDEX env variable set, replacing the default one in fluentd.conf."
- sed -i "s/index main/index $SPLUNK_INDEX/g" /opt/app-root/src/fluentd.conf
-fi
-
-/opt/app-root/src/bundle/ruby/2.4.0/bin/fluentd -c /opt/app-root/src/fluentd.conf
+bundle exec fluentd -c /opt/app-root/src/config/fluentd.conf
