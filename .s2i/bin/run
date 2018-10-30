@@ -51,4 +51,4 @@ else
  sed -i "s/index main/index $SPLUNK_INDEX/g" $FLUENT_CONF
 fi
 
-bundle exec fluentd -c /opt/app-root/src/config/fluentd.conf
+/opt/app-root/src/bundle/ruby/2.4.0/bin/fluentd -c /opt/app-root/src/config/fluentd.conf
